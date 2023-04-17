@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Spreadsheet, { RowComponent } from 'react-spreadsheet';
 import './style.css';
 
@@ -31,6 +32,10 @@ export default function App() {
 
   const [data, setData] = React.useState(initialValue);
 
+  // useEffect(() => {
+  //   setData(initialValue);
+  // }, []);
+
   const addRow = () => {
     setData([...data, newRow]);
   };
@@ -38,7 +43,12 @@ export default function App() {
   const addColumn = () => {
     const newColumn = { value: '' };
     const temp = [...data];
-    temp[0].push({ value: '' });
+    // temp[0].push(newColumn);
+
+    for (let index = 0; index < temp.length; index++) {
+      debugger;
+      temp[index] = [...temp[index], newColumn];
+    }
 
     setData(temp);
   };
