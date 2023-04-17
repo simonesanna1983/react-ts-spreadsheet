@@ -29,18 +29,19 @@ export default function App() {
     { value: '' },
   ];
 
-  const newColumn = { value: '' };
-
   const [data, setData] = React.useState(initialValue);
 
   const addRow = () => {
     setData([...data, newRow]);
   };
 
-  //   const addColumn = () => {
-  // data[0] = data[0][];
-  //     setData());
-  //   };
+  const addColumn = () => {
+    const newColumn = { value: '' };
+    const temp = [...data];
+    temp[0].push({ value: '' });
+
+    setData(temp);
+  };
 
   const toJson = () => {
     console.log(JSON.stringify(data, null, 2));
@@ -52,11 +53,11 @@ export default function App() {
 
   return (
     <div>
-      <Spreadsheet data={data} onChange={setData}  />
+      <Spreadsheet data={data} onChange={setData} />
       <br />
       <button onClick={addRow}>Add Row</button>
       <br /> <br /> <br />
-      {/* <button onClick={addColumn}>Add Column</button> */}
+      <button onClick={addColumn}>Add Column</button>
       <br /> <br /> <br />
       <button onClick={toJson}>Json</button>
       <br /> <br /> <br />
